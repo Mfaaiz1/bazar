@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <!-- CSS CUSTOM -->
+  <link rel="stylesheet" href="{% static 'E-Bazar/simple.css' %}">
+    <meta charset="UTF-8">
+    <title>Select Category</title>
+    <style>
+      .nav{
+        background-color: rgb(21, 172, 177);
+        height: 50px;
+        border-radius: 0px;
+        text-align: center;
+        padding-top: 20px;
+        font-size: 30px;
+        color: rgb(255, 255, 255);
+      }
+    </style>
+</head>
+<body style="margin:0">
+  <nav class="nav" >E-Bazar seller central</nav>
+<div class="div_class">
+<h1 style="text-align: center">
+  Select a Product Caregory
+</h1>
+<div>
+    <label for="Category">Search Category</label><br>
+    <input type="text" id="Category" name="Category">
+  <button type="submit" class="registerbtn"> Search </button>
+     <button type="submit" class="registerbtn" onclick="location.href='{% url 'selectcategory' %}'"> Show All </button>
+  </div>
+    <div>
+        {% for subcat in subcats %}
+        <form action='{% url "leafcat" %}' method="POST">
+             {% csrf_token %}
+      <button name="category" type="submit" value="{{subcat.category}}">{{subcat.name}}</button>
+    </form>
+        <br><br>
+        {% endfor %}
+    </div>
+    <p>2</p>
+
+</div>
+
+</body>
+</html>
